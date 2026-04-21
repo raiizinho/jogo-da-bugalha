@@ -1,0 +1,241 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #e8e2d0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+}
+
+/* layout geral */
+.game-content {
+  padding: 20px;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+}
+
+/* laterais */
+.left-box,
+.right-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-box {
+  position: relative;
+  width: 80%;
+  height: 150px;
+  border: 2px solid #3a3a3a;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #111, #1c1c1c);
+  box-shadow:
+    inset 0 0 10px #000,
+    0 0 10px rgba(0, 0, 0, 0.6);
+  overflow: visible;
+}
+
+/* dado dentro da info-box */
+.info-dado {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+
+  background: linear-gradient(145deg, #e6dccb, #cfc6b5);
+  border: 2px solid #2b2b2b;
+
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.4),
+    0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* ajuste da imagem para não sobrepor o dado */
+.avatar {
+  position: absolute;
+  top: -65px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 80px;
+  width: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+}
+
+/* nome dos jogadores */
+.player-name {
+  position: absolute;
+  top: 25px; /* abaixo da imagem */
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  color: #e6dccb;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* pontuação do player */
+.player-score {
+  position: absolute;
+  top: 50px; /* abaixo do nome */
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 20px;
+  font-weight: bold;
+
+  color: #d6c89c;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* centro */
+.mid-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+}
+
+.top-box,
+.bottom-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  height: 50%;
+}
+
+/* colunas */
+.box {
+  border-radius: 12px;
+  background: linear-gradient(145deg, #1b1b1b, #101010);
+  border: 2px solid #2a2a2a;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+/* número embaixo */
+.top-box .box {
+  grid-template-rows: repeat(3, 1fr) auto;
+}
+
+/* número em cima */
+.bottom-box .box {
+  grid-template-rows: auto repeat(3, 1fr);
+}
+
+/* dados */
+.dado {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #f5f1e6, #d8d2c4);
+  border: 2px solid #2b2b2b;
+  position: relative;
+
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.4),
+    0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* ponto base */
+.dado::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #222;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 1 */
+.face-1::before {
+  box-shadow: none;
+}
+
+/* 2 */
+.face-2::before {
+  box-shadow:
+    -18px -18px 0 #222,
+    18px 18px 0 #222;
+}
+
+/* 3 */
+.face-3::before {
+  box-shadow:
+    -18px -18px 0 #222,
+    18px 18px 0 #222,
+    0 0 0 #222;
+}
+
+/* 4 */
+.face-4::before {
+  box-shadow:
+    -18px -18px 0 #222,
+    18px -18px 0 #222,
+    -18px 18px 0 #222,
+    18px 18px 0 #222;
+}
+
+/* 5 */
+.face-5::before {
+  box-shadow:
+    -18px -18px 0 #222,
+    18px -18px 0 #222,
+    -18px 18px 0 #222,
+    18px 18px 0 #222,
+    0 0 0 #222;
+}
+
+/* 6 */
+.face-6::before {
+  box-shadow:
+    -18px -18px 0 #222,
+    18px -18px 0 #222,
+    -18px 0px 0 #222,
+    18px 0px 0 #222,
+    -18px 18px 0 #222,
+    18px 18px 0 #222;
+}
+
+/* números */
+.num {
+  font-size: 20px;
+  font-weight: bold;
+  color: #d6c89c;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  margin-top: 5px;
+}
+
+/* responsivo */
+@media (max-width: 900px) {
+  .game-content {
+    grid-template-columns: 1fr;
+  }
+
+  .left-box,
+  .right-box {
+    display: none;
+  }
+}
