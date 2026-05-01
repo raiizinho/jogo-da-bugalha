@@ -1,0 +1,658 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #e8e2d0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+}
+
+.profile-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(26, 26, 26, 0.95),
+    #000 72%
+  );
+}
+
+.profile-screen.hidden {
+  display: none;
+}
+
+.profile-card {
+  width: min(860px, 100%);
+  padding: 28px;
+  display: grid;
+  gap: 18px;
+  border: 2px solid #2a2a2a;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #111, #1c1c1c);
+  box-shadow:
+    inset 0 0 10px #000,
+    0 0 24px rgba(0, 0, 0, 0.9);
+}
+
+.profile-heading {
+  display: grid;
+  gap: 6px;
+  text-align: center;
+}
+
+.profile-players {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.profile-player {
+  min-width: 0;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+  border: 2px solid #2a2a2a;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #101010, #181818);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.profile-player legend {
+  padding: 0 8px;
+  color: #d6c89c;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.profile-preview {
+  width: 132px;
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  border-radius: 12px;
+  border: 2px dashed #333;
+  background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+  box-shadow:
+    inset 0 0 8px rgba(0, 0, 0, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.profile-avatar-preview {
+  width: 96px;
+  max-height: 108px;
+  object-fit: contain;
+  border-radius: 8px;
+  filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.8));
+}
+
+.profile-kicker {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #d6c89c;
+  text-transform: uppercase;
+}
+
+.profile-heading h1 {
+  font-size: 30px;
+  line-height: 1.1;
+  color: #e6dccb;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.profile-player label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e6dccb;
+}
+
+.profile-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 2px solid #2a2a2a;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #0d0d0d, #171717);
+  color: #e8e2d0;
+  font-size: 15px;
+  outline: none;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.profile-input:focus {
+  border-color: #666;
+}
+
+.profile-input::placeholder {
+  color: #827b68;
+}
+
+.profile-error {
+  min-height: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #d6c89c;
+  text-align: center;
+}
+
+.profile-button {
+  width: min(320px, 100%);
+  height: 46px;
+  margin: 0 auto;
+  border: 2px solid #2b2b2b;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #e6dccb, #cfc6b5);
+  color: #111;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.4),
+    0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+.profile-button:hover {
+  filter: brightness(1.05);
+}
+
+/* layout geral */
+.game-content {
+  padding: 20px;
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "player-one board player-two";
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+}
+
+/* laterais */
+.left-box,
+.right-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-box {
+  grid-area: player-one;
+}
+
+.right-box {
+  grid-area: player-two;
+}
+
+.info-box {
+  position: relative;
+  width: 80%;
+  height: 150px;
+  border: 2px solid #3a3a3a;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #111, #1c1c1c);
+  box-shadow:
+    inset 0 0 10px #000,
+    0 0 10px rgba(0, 0, 0, 0.6);
+  overflow: visible;
+}
+
+.info-box.active-turn {
+  border-color: #d6c89c;
+  box-shadow:
+    inset 0 0 10px #000,
+    0 0 18px rgba(214, 200, 156, 0.45);
+}
+
+/* dado dentro da info-box */
+.info-dado {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+
+  background: linear-gradient(145deg, #e6dccb, #cfc6b5);
+  border: 2px solid #2b2b2b;
+
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.4),
+    0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* ajuste da imagem para não sobrepor o dado */
+.avatar {
+  position: absolute;
+  top: -65px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 80px;
+  width: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+}
+
+/* nome dos jogadores */
+.player-name {
+  position: absolute;
+  top: 25px; /* abaixo da imagem */
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  color: #e6dccb;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* pontuação do player */
+.player-score {
+  position: absolute;
+  top: 50px; /* abaixo do nome */
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 20px;
+  font-weight: bold;
+
+  color: #d6c89c;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* centro */
+.mid-box {
+  grid-area: board;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+}
+
+.top-box,
+.bottom-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  height: 50%;
+}
+
+/* colunas */
+.box {
+  border-radius: 12px;
+  background: linear-gradient(145deg, #1b1b1b, #101010);
+  border: 2px solid #2a2a2a;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.p1.active-turn .box,
+.p2.active-turn .box {
+  border-color: #d6c89c;
+  box-shadow:
+    0 0 12px rgba(214, 200, 156, 0.35),
+    inset 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+/* número embaixo */
+.top-box .box {
+  grid-template-rows: repeat(3, 1fr) auto;
+}
+
+/* número em cima */
+.bottom-box .box {
+  grid-template-rows: auto repeat(3, 1fr);
+}
+
+/* área base sempre visível */
+.slot {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+  border: 2px dashed #333;
+
+  box-shadow:
+    inset 0 0 8px rgba(0, 0, 0, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.6);
+
+  transition: all 0.2s ease;
+}
+
+/* feedback visual */
+.slot:hover {
+  border-color: #666;
+  background: linear-gradient(145deg, #111, #222);
+}
+
+.slot.blocked {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.box.full {
+  cursor: not-allowed;
+}
+
+/* opcional: quando já tem dado */
+.slot:has(.dado[class*="face-"]) {
+  border-style: solid;
+  border-color: #2b2b2b;
+}
+.dado-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  pointer-events: none;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(-18px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* quando tem valor */
+.dado-img.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dado-img.drop {
+  animation: dice-drop 0.28s cubic-bezier(0.22, 0.9, 0.32, 1.18);
+}
+
+.dado-img.remove {
+  animation: dice-remove 0.24s ease forwards;
+}
+
+@keyframes dice-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-56px) scale(0.92);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translateY(4px) scale(1.03);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dice-remove {
+  to {
+    opacity: 0;
+    transform: translateY(12px) scale(0.5) rotate(18deg);
+  }
+}
+.info-dado {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* números */
+.num {
+  font-size: 20px;
+  font-weight: bold;
+  color: #d6c89c;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  margin-top: 5px;
+}
+
+/* responsivo */
+@media (max-width: 900px) {
+  body {
+    min-height: 100svh;
+  }
+
+  .profile-screen {
+    align-items: flex-start;
+    overflow: auto;
+  }
+
+  .profile-card {
+    width: min(520px, 100%);
+    margin: auto;
+    padding: 16px;
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+    gap: 14px;
+  }
+
+  .profile-players {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-preview {
+    width: 96px;
+    height: 96px;
+  }
+
+  .profile-avatar-preview {
+    width: 72px;
+    max-height: 78px;
+  }
+
+  .profile-heading h1 {
+    font-size: 24px;
+  }
+
+  .profile-player {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .profile-input {
+    height: 40px;
+  }
+
+  .game-content {
+    min-height: 100svh;
+    height: auto;
+    padding: 10px;
+    grid-template-areas:
+      "player-two"
+      "board"
+      "player-one";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+  }
+
+  .left-box,
+  .right-box {
+    display: flex;
+    min-width: 0;
+  }
+
+  .info-box {
+    width: 100%;
+    height: 74px;
+    padding: 8px 10px;
+    display: grid;
+    grid-template-areas:
+      "avatar name dice"
+      "avatar score dice";
+    grid-template-columns: 52px minmax(0, 1fr) 52px;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 10px;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .avatar {
+    grid-area: avatar;
+    position: static;
+    width: 46px;
+    height: 46px;
+    transform: none;
+    object-fit: cover;
+    justify-self: start;
+  }
+
+  .player-name {
+    grid-area: name;
+    position: static;
+    min-width: 0;
+    transform: none;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .player-score {
+    grid-area: score;
+    position: static;
+    transform: none;
+    font-size: 18px;
+    line-height: 1;
+    justify-self: start;
+  }
+
+  .info-dado {
+    grid-area: dice;
+    position: static;
+    width: 48px;
+    height: 48px;
+    transform: none;
+    justify-self: end;
+  }
+
+  .info-dado .dado-img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .mid-box {
+    min-height: 0;
+    height: auto;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .top-box,
+  .bottom-box {
+    height: auto;
+    min-height: 0;
+    gap: 8px;
+  }
+
+  .box {
+    min-width: 0;
+    padding: 6px 4px;
+    border-radius: 10px;
+  }
+
+  .slot {
+    width: clamp(44px, 17vw, 58px);
+    height: clamp(44px, 17vw, 58px);
+    border-radius: 10px;
+  }
+
+  .dado-img {
+    width: clamp(38px, 14vw, 50px);
+    height: clamp(38px, 14vw, 50px);
+  }
+
+  .num {
+    margin-top: 2px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .game-content {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .info-box {
+    height: 68px;
+    grid-template-columns: 46px minmax(0, 1fr) 46px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .player-name {
+    font-size: 13px;
+  }
+
+  .player-score {
+    font-size: 16px;
+  }
+
+  .info-dado {
+    width: 42px;
+    height: 42px;
+  }
+
+  .info-dado .dado-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .top-box,
+  .bottom-box {
+    gap: 6px;
+  }
+
+  .box {
+    padding: 5px 3px;
+  }
+
+  .slot {
+    width: clamp(40px, 16vw, 50px);
+    height: clamp(40px, 16vw, 50px);
+  }
+
+  .dado-img {
+    width: clamp(34px, 13vw, 44px);
+    height: clamp(34px, 13vw, 44px);
+  }
+}
