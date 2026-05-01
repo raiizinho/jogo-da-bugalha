@@ -2,7 +2,7 @@
 
 Um jogo local para dois jogadores, inspirado no minigame **Knucklebones**, presente em **Cult of the Lamb**.
 
-Este projeto foi criado com intuito de **aprendizado, pratica de desenvolvimento web e entretenimento**. A ideia foi recriar a logica principal do minigame usando HTML, CSS e JavaScript puro, explorando manipulacao de DOM, controle de estado, animacoes e responsividade.
+Este projeto foi criado com intuito de **aprendizado, pratica de desenvolvimento web e entretenimento**. A ideia foi recriar a logica principal do minigame usando HTML, CSS e JavaScript puro, explorando manipulação de DOM, controle de estado, animações e responsividade.
 
 ## Sobre o jogo
 
@@ -18,11 +18,11 @@ A cada turno, o jogador recebe um dado aleatorio e escolhe uma coluna para posic
 - O dado sempre ocupa o espaco livre mais baixo da coluna escolhida.
 - Quando um dado e colocado em uma coluna, dados iguais na mesma coluna do adversario sao removidos.
 - A partida termina quando um dos jogadores completa todos os espacos do proprio tabuleiro.
-- Ao final, o jogo compara as pontuacoes e anuncia o vencedor.
+- Ao final, o jogo compara as pontuações e anuncia o vencedor.
 
-## Sistema de pontuacao
+## Sistema de pontuação
 
-A pontuacao de cada coluna considera dados iguais como multiplicadores.
+A pontuação de cada coluna considera dados iguais como multiplicadores.
 
 Exemplos:
 
@@ -41,7 +41,7 @@ Se a coluna possuir valores diferentes, cada grupo e calculado separadamente e s
 
 ```txt
 Coluna: 5, 5, 2
-Pontuacao: 20 + 2 = 22
+Pontuação: 20 + 2 = 22
 ```
 
 ## Funcionalidades
@@ -53,12 +53,12 @@ Pontuacao: 20 + 2 = 22
 - Sorteio automatico de quem comeca.
 - Indicador visual de turno.
 - Dado aleatorio a cada turno.
-- Animacao de queda dos dados.
-- Remocao animada dos dados iguais do adversario.
-- Reorganizacao dos dados na coluna apos remocao.
-- Calculo automatico de pontuacao por coluna e pontuacao total.
+- Animação de queda dos dados.
+- Remoção animada dos dados iguais do adversario.
+- Reorganização dos dados na coluna apos remoção.
+- Calculo automatico de pontuação por coluna e pontuação total.
 - Tela final anunciando vencedor ou empate.
-- Opcoes para continuar jogando ou voltar para a tela inicial.
+- Opções para continuar jogando ou voltar para a tela inicial.
 - Layout responsivo para desktop e celular.
 
 ## Tecnologias usadas
@@ -91,7 +91,7 @@ http://localhost:8000/src/
 
 ## GitHub Pages
 
-O projeto tambem possui uma versao preparada para publicacao na pasta:
+O projeto tambem possui uma versao preparada para publicação na pasta:
 
 ```txt
 docs/
@@ -104,25 +104,25 @@ Branch: main
 Folder: /docs
 ```
 
-## Inspiracao
+## Inspiração
 
 Este jogo foi inspirado no minigame **Knucklebones**, de **Cult of the Lamb**.
 
-Todos os direitos de Cult of the Lamb pertencem aos seus respectivos criadores e publicadores. Este projeto e apenas uma recriacao feita por fa, com objetivo educacional e recreativo.
+Todos os direitos de Cult of the Lamb pertencem aos seus respectivos criadores e publicadores. Este projeto e apenas uma recriação feita por fã, com objetivo educacional e recreativo.
 
 ## Objetivo do projeto
 
 O foco deste projeto foi praticar:
 
-- criacao de interfaces responsivas;
-- manipulacao de elementos HTML com JavaScript;
-- organizacao de regras de jogo;
+- criação de interfaces responsivas;
+- manipulação de elementos HTML com JavaScript;
+- organização de regras de jogo;
 - controle de turnos;
-- calculo de pontuacao;
-- animacoes com CSS;
-- persistencia simples com `localStorage`;
-- preparacao de projeto para GitHub Pages.
+- cálculo de pontuação;
+- animações com CSS;
+- persistência simples com `localStorage`;
+- preparação de projeto para GitHub Pages.
 
 ## Autor
 
-Desenvolvido por **Raizoca** como projeto de aprendizado e diversao.
+Desenvolvido por **Raizoca** como projeto de aprendizado e diversão.
