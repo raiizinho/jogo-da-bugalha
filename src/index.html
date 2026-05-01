@@ -3,72 +3,214 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/css/index.css" />
+    <link rel="stylesheet" href="styles/css/playerStarts.css" />
     <title>Jogo da Bugalha</title>
   </head>
   <body>
+    <section class="profile-screen" aria-labelledby="profile-title">
+      <form class="profile-card" novalidate>
+        <div class="profile-heading">
+          <span class="profile-kicker">Jogo da Bugalha</span>
+          <h1 id="profile-title">Escolha os jogadores</h1>
+        </div>
+
+        <div class="profile-players">
+          <fieldset class="profile-player">
+            <legend>Jogador 1</legend>
+
+            <div class="profile-preview">
+              <img
+                src="./styles/images/p1.jpg"
+                class="profile-avatar-preview"
+                data-preview="player1"
+                alt="Previa da foto do jogador 1"
+              />
+            </div>
+
+            <label for="playerOneName">Nome de usuario</label>
+            <input
+              id="playerOneName"
+              class="profile-input"
+              data-profile-field="name"
+              data-player="player1"
+              type="text"
+              maxlength="24"
+              placeholder="Nome do jogador 1"
+              autocomplete="nickname"
+              required
+            />
+
+            <label for="playerOneAvatar">Foto de perfil por URL</label>
+            <input
+              id="playerOneAvatar"
+              class="profile-input"
+              data-profile-field="avatar"
+              data-player="player1"
+              type="url"
+              placeholder="https://exemplo.com/foto.png"
+              autocomplete="url"
+              required
+            />
+          </fieldset>
+
+          <fieldset class="profile-player">
+            <legend>Jogador 2</legend>
+
+            <div class="profile-preview">
+              <img
+                src="./styles/images/p2.jpg"
+                class="profile-avatar-preview"
+                data-preview="player2"
+                alt="Previa da foto do jogador 2"
+              />
+            </div>
+
+            <label for="playerTwoName">Nome de usuario</label>
+            <input
+              id="playerTwoName"
+              class="profile-input"
+              data-profile-field="name"
+              data-player="player2"
+              type="text"
+              maxlength="24"
+              placeholder="Nome do jogador 2"
+              autocomplete="nickname"
+              required
+            />
+
+            <label for="playerTwoAvatar">Foto de perfil por URL</label>
+            <input
+              id="playerTwoAvatar"
+              class="profile-input"
+              data-profile-field="avatar"
+              data-player="player2"
+              type="url"
+              placeholder="https://exemplo.com/foto.png"
+              autocomplete="url"
+              required
+            />
+          </fieldset>
+        </div>
+
+        <p class="profile-error" role="alert"></p>
+
+        <button class="profile-button" type="submit">Entrar no jogo</button>
+      </form>
+    </section>
+
     <div class="game-content">
       <div class="left-box">
-        <div class="info-box">
-          <img src="./styles/images/p1.jpg" class="avatar" />
-          <span class="player-name">Salsicha Auras</span>
-          <span class="player-score">67</span>
-          <div class="info-dado"></div>
+        <div class="info-box player-one-info" data-player-info="player1">
+          <img
+            src="./styles/images/p1.jpg"
+            class="avatar player-one-avatar"
+            alt="Foto do jogador"
+          />
+          <span class="player-name player-one-name">Salsicha Auras</span>
+          <span class="player-score player-one-score">0</span>
+
+          <div class="info-dado">
+            <img class="dado-img" src="" alt="" />
+          </div>
         </div>
       </div>
 
       <div class="mid-box">
-        <div class="top-box">
+        <div class="top-box p2">
           <div class="box">
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
             <span class="num">10</span>
           </div>
           <div class="box">
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
             <span class="num">25</span>
           </div>
           <div class="box">
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
             <span class="num">3</span>
           </div>
         </div>
 
-        <div class="bottom-box">
+        <div class="bottom-box p1">
           <div class="box">
             <span class="num">11</span>
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
           </div>
           <div class="box">
             <span class="num">36</span>
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
           </div>
           <div class="box">
             <span class="num">5</span>
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
-            <div class="dado face-1"></div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
+            <div class="slot">
+              <img class="dado-img" src="" alt="" />
+            </div>
           </div>
         </div>
       </div>
       <div class="right-box">
-        <div class="info-box">
-          <img src="./styles/images/p2.jpg" class="avatar" />
-          <span class="player-name">Satoru Banguela</span>
-          <span class="player-score">38</span>
-          <div class="info-dado"></div>
+        <div class="info-box player-two-info" data-player-info="player2">
+          <img
+            src="./styles/images/p2.jpg"
+            class="avatar player-two-avatar"
+            alt="Foto do jogador"
+          />
+          <span class="player-name player-two-name">Satoru Banguela</span>
+          <span class="player-score player-two-score">0</span>
+          <div class="info-dado">
+            <img class="dado-img" src="" alt="" />
+          </div>
         </div>
       </div>
     </div>
   </body>
   <script type="module" src="/src/scripts/index.js"></script>
+  <script type="module" src="/src/scripts/playerStarts.js"></script>
 </html>
