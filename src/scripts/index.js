@@ -65,13 +65,18 @@ function buscarPreviaPerfil(player) {
 
 function aplicarPerfis(profiles) {
   Object.entries(profiles).forEach(([player, profile]) => {
-    playerElements[player].name.textContent = profile.name;
-    playerElements[player].avatar.src = profile.avatar;
-    buscarPreviaPerfil(player).src = profile.avatar;
-    buscarCampoPerfil(player, "name").value = profile.name;
-    buscarCampoPerfil(player, "avatar").value = profile.avatar.startsWith(".")
+    const profileWithDefaults = {
+      ...defaultProfiles[player],
+      ...profile,
+    };
+
+    playerElements[player].name.textContent = profileWithDefaults.name;
+    playerElements[player].avatar.src = profileWithDefaults.avatar;
+    buscarPreviaPerfil(player).src = profileWithDefaults.avatar;
+    buscarCampoPerfil(player, "name").value = profileWithDefaults.name;
+    buscarCampoPerfil(player, "avatar").value = profileWithDefaults.avatar.startsWith(".")
       ? ""
-      : profile.avatar;
+      : profileWithDefaults.avatar;
   });
 }
 
@@ -104,6 +109,11 @@ profileInputs.forEach((input) => {
     }
 
     const avatarUrl = input.value.trim();
+    if (!avatarUrl) {
+      buscarPreviaPerfil(input.dataset.player).src = defaultProfiles[input.dataset.player].avatar;
+      return;
+    }
+
     if (urlValida(avatarUrl)) {
       buscarPreviaPerfil(input.dataset.player).src = avatarUrl;
     }
@@ -131,7 +141,7 @@ function buscarPerfisDoFormulario() {
   return Object.keys(defaultProfiles).reduce((profiles, player) => {
     profiles[player] = {
       name: buscarCampoPerfil(player, "name").value.trim(),
-      avatar: buscarCampoPerfil(player, "avatar").value.trim(),
+      avatar: buscarCampoPerfil(player, "avatar").value.trim() || defaultProfiles[player].avatar,
     };
 
     return profiles;
@@ -146,7 +156,7 @@ function validarPerfis(profiles) {
       return `Digite um nome com pelo menos 2 letras para o jogador ${playerNumber}.`;
     }
 
-    if (!urlValida(profile.avatar)) {
+    if (!profile.avatar.startsWith(".") && !urlValida(profile.avatar)) {
       return `Use uma URL completa, com http ou https, para o jogador ${playerNumber}.`;
     }
   }
